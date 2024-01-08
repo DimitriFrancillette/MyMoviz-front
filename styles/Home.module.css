@@ -1,6 +1,6 @@
 .main {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
   min-height: 100vh;
@@ -19,4 +19,17 @@
 
 .title a:hover, .title a:focus, .title a:active {
   text-decoration: underline;
+}
+
+/* my code  */
+
+.header {
+  background-color: #021334;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.images {
+  margin: 0.5rem;
 }

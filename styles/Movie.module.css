@@ -1,0 +1,28 @@
+.globalDiv {
+    margin: 0.8rem;
+}
+
+.img {
+    border-radius: 10px;
+}
+
+.title {
+    margin: 1rem 0 1rem 0;
+    font-size: 25px;
+}
+
+.description {
+    font-size: 20px;
+}
+
+.ratingDiv {
+    display: flex;
+    align-items: center;
+}
+.rating {
+    margin-right: 1rem;
+}
+
+.votes {
+    padding-top: 11px;
+}
