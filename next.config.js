@@ -10,7 +10,11 @@ const nextConfig = {
     "rc-picker",
     "rc-util",
     "rc-tree",
-    "rc-tooltip"],
+    "rc-tooltip",
+    "@rc-component",
+    "styled-js",
+    "rc-resize-observer",
+  ],
 };
 
 export default nextConfig;

@@ -1,13 +1,14 @@
 import styles from '../styles/Movie.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faVideo, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faVideo, faStar } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
 
 function Movie(props) {
     const [starBlink, setstarBlink] = useState(false);
     const [personalNote, setPersonalNote] = useState(0);
     const [watchCount, setWatchCount] = useState(0);
-    const [vidColor, setVidColor] = useState("#000000")
+    const [vidColor, setVidColor] = useState("#000000");
+    const [heartColor, setHeartColor] = useState("#000000");
 
     const avgStars = [];
 
@@ -34,8 +35,16 @@ function Movie(props) {
     }
 
     const handleClickVideo = () => {
-        setWatchCount(watchCount+1);
+        setWatchCount(watchCount + 1);
         setVidColor("#e74c3c")
+    }
+
+    const handleClickLiked = () => {
+        if (heartColor === "#000000") {
+            setHeartColor("#e74c3c")
+        } else {
+            setHeartColor("#000000")
+        }
     }
 
 
@@ -70,10 +79,15 @@ function Movie(props) {
             </div>
             <div className={styles.ratingDiv}>
                 <div className={styles.rating}>
-                    <FontAwesomeIcon onClick={() => handleClickVideo()} icon={faVideo} style={{color: vidColor,}} />
+                    <FontAwesomeIcon onClick={() => handleClickVideo()} icon={faVideo} style={{ color: vidColor }} />
                 </div>
                 <div className={styles.votes}>
                     <p>{watchCount}</p>
+                </div>
+            </div>
+            <div className={styles.ratingDiv}>
+                <div className={styles.rating}>
+                    <FontAwesomeIcon onClick={() => handleClickLiked()} icon={faHeart} style={{ color: heartColor }} />
                 </div>
             </div>
         </div>
