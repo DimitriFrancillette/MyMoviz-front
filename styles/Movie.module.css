@@ -1,5 +1,6 @@
 .globalDiv {
     margin: 0.8rem;
+    max-width: 32rem;
 }
 
 .img {
