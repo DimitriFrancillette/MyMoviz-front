@@ -1,12 +1,13 @@
 import styles from '../styles/Movie.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faL, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faVideo, faStar } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
 
 function Movie(props) {
     const [starBlink, setstarBlink] = useState(false);
     const [personalNote, setPersonalNote] = useState(0);
     const [watchCount, setWatchCount] = useState(0);
+    const [vidColor, setVidColor] = useState("#000000")
 
     const avgStars = [];
 
@@ -20,17 +21,24 @@ function Movie(props) {
 
     const myStars = [];
 
-    const handleClick = (key) => {
+    const handleClickStar = (key) => {
         setPersonalNote(key + 1)
     }
 
     for (let i = 0; i < 10; i++) {
         if (i < personalNote) {
-            myStars.push(<FontAwesomeIcon onClick={() => handleClick(i)} key={i} icon={faStar} style={{ color: "#0048ff" }} />)
+            myStars.push(<FontAwesomeIcon onClick={() => handleClickStar(i)} key={i} icon={faStar} style={{ color: "#2196f3" }} />)
         } else {
-            myStars.push(<FontAwesomeIcon onClick={() => handleClick(i)} key={i} icon={faStar} style={{ color: "#000000" }} />)
+            myStars.push(<FontAwesomeIcon onClick={() => handleClickStar(i)} key={i} icon={faStar} style={{ color: "#000000" }} />)
         }
     }
+
+    const handleClickVideo = () => {
+        setWatchCount(watchCount+1);
+        setVidColor("#e74c3c")
+    }
+
+
 
     return (
         <div className={styles.globalDiv}>
@@ -59,7 +67,14 @@ function Movie(props) {
                 <div className={styles.votes}>
                     <p>{personalNote}</p>
                 </div>
-
+            </div>
+            <div className={styles.ratingDiv}>
+                <div className={styles.rating}>
+                    <FontAwesomeIcon onClick={() => handleClickVideo()} icon={faVideo} style={{color: vidColor,}} />
+                </div>
+                <div className={styles.votes}>
+                    <p>{watchCount}</p>
+                </div>
             </div>
         </div>
     );
