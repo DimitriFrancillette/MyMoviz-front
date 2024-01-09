@@ -42,12 +42,18 @@ function Movie(props) {
     const handleClickLiked = () => {
         if (heartColor === "#000000") {
             setHeartColor("#e74c3c")
+            props.updateLikedMovies(props.title)
         } else {
-            setHeartColor("#000000")
+            setHeartColor("#000000")/
+            props.updateLikedMovies(props.title)
         }
     }
 
-
+    // if (props.likedMovies.includes(props.title)) {
+    //     setHeartColor("#e74c3c")
+    // } else {
+    //     setHeartColor("#000000")
+    // }
 
     return (
         <div className={styles.globalDiv}>
