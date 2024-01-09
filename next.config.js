@@ -4,6 +4,13 @@ const nextConfig = {
   images: {
     domains: [],
   },
+  transpilePackages: ["antd",
+    "@ant-design",
+    "rc-pagination",
+    "rc-picker",
+    "rc-util",
+    "rc-tree",
+    "rc-tooltip"],
 };
 
-module.exports = nextConfig;
+export default nextConfig;
