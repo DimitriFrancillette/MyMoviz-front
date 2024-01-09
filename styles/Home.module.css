@@ -9,7 +9,8 @@
 
 .title {
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 2rem;
+  margin: 2rem 0rem -2rem 10rem;
 }
 
 .title a {
@@ -21,8 +22,6 @@
   text-decoration: underline;
 }
 
-/* my code  */
-
 .header {
   background-color: #021334;
   display: flex;
@@ -32,4 +31,13 @@
 
 .images {
   margin: 0.5rem;
+}
+
+.content {
+  min-width: 100vw;
+}
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
 }

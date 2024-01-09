@@ -1,9 +1,9 @@
 import styles from '../styles/Home.module.css';
 import Movie from './Movie';
 import 'antd/dist/reset.css';
-import {  Button, Popover  } from 'antd';
+import { Button, Popover } from 'antd';
 
-const logoLetterStyle = { 'width': '10rem'};
+const logoLetterStyle = { 'width': '10rem' };
 const buttonStyle = {
   'border-radius': '5px',
   'border-color': 'white',
@@ -29,8 +29,8 @@ function Home() {
     <div>
       <div className={styles.header}>
         <div>
-          <img className={styles.images} src="/logo.png" alt="Logo"/>
-          <img style={logoLetterStyle} className={styles.images} src="/logoletter.png" alt="Letter logo"/>
+          <img className={styles.images} src="/logo.png" alt="Logo" />
+          <img style={logoLetterStyle} className={styles.images} src="/logoletter.png" alt="Letter logo" />
         </div>
         <div>
           <Popover content={content} title="Mes films ♥" trigger="click">
@@ -38,12 +38,17 @@ function Home() {
           </Popover>
         </div>
       </div>
-      <h1 className={styles.title}>
+
+      <div className={styles.content}>
+        <h1 className={styles.title}>
           Last releases
-      </h1>
-      <main className={styles.main}>
-      {movies}
-      </main>
+        </h1>
+        <main className={styles.main}>
+          {movies}
+        </main>
+      </div>
+
+
     </div>
   );
 }
