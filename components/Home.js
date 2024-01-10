@@ -52,7 +52,11 @@ function Home() {
   }
 
   const movies = apiMovies.map(data => {
-    return <Movie key={data.id} poster={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} title={data.title} overview={data.overview} voteAverage={data.vote_average} voteCount={data.vote_count} updateLikedMovies={updateLikedMovies} />;
+    let shortOverview = data.overview;
+    if (data.overview.length > 250) {
+      shortOverview = data.overview.slice(0,250) + " ...";
+    }
+    return <Movie key={data.id} poster={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} title={data.title} overview={shortOverview} voteAverage={data.vote_average} voteCount={data.vote_count} updateLikedMovies={updateLikedMovies} />;
   });
 
   const content = likedMovies.map(title => {

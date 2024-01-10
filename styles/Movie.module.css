@@ -1,6 +1,11 @@
 .globalDiv {
     margin: 0.8rem;
     max-width: 32rem;
+    max-height: 71rem;
+    margin-bottom: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .img {
