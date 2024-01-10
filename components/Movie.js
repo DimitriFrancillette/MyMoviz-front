@@ -4,7 +4,6 @@ import { faHeart, faVideo, faStar } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
 
 function Movie(props) {
-    const [starBlink, setstarBlink] = useState(false);
     const [personalNote, setPersonalNote] = useState(0);
     const [watchCount, setWatchCount] = useState(0);
     const [vidColor, setVidColor] = useState("#000000");
@@ -48,12 +47,6 @@ function Movie(props) {
             props.updateLikedMovies(props.title)
         }
     }
-
-    // if (props.likedMovies.includes(props.title)) {
-    //     setHeartColor("#e74c3c")
-    // } else {
-    //     setHeartColor("#000000")
-    // }
 
     return (
         <div className={styles.globalDiv}>
