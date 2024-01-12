@@ -28,13 +28,12 @@ function Home() {
   // ];
 
   useEffect(() => {
-    console.log('Let\'s SEE')
     fetch('http://localhost:3000/movies')
       .then(response => response.json())
       .then(data => {
         setApiMovies(data.movies);
       })
-    .catch(err => console.error('error:' + err));
+      .catch(err => console.error('error:' + err));
   }, []);
 
   const updateLikedMovies = (movieTitle) => {
@@ -49,9 +48,15 @@ function Home() {
   const movies = apiMovies.map(data => {
     let shortOverview = data.overview;
     if (data.overview.length > 250) {
-      shortOverview = data.overview.slice(0,250) + " ...";
+      shortOverview = data.overview.slice(0, 250) + " ...";
     }
-    return <Movie key={data.id} poster={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} title={data.title} overview={shortOverview} voteAverage={data.vote_average} voteCount={data.vote_count} updateLikedMovies={updateLikedMovies} />;
+
+    let poster = `https://image.tmdb.org/t/p/w500/${data.poster_path}`;
+    if (!data.poster_path) {
+      poster = `poster.jpg`
+    }
+
+    return <Movie key={data.id} poster={poster} title={data.title} overview={shortOverview} voteAverage={data.vote_average} voteCount={data.vote_count} updateLikedMovies={updateLikedMovies} />;
   });
 
   const content = likedMovies.map(title => {
@@ -66,7 +71,17 @@ function Home() {
 
   const handleSearch = (param) => {
     console.log(param)
+
+    fetch(`http://localhost:3000/search/${movieSearch}`)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.results)
+        setApiMovies(data.results);
+      })
+      .catch(err => console.error('error:' + err));
   }
+
+  const handleKey = param => param === "Enter" ? handleSearch(movieSearch) : null;
 
   return (
     <div>
@@ -76,8 +91,8 @@ function Home() {
           <img style={logoLetterStyle} className={styles.images} src="/logoletter.png" alt="Letter logo" />
         </div>
         <div className={styles.searchDiv}>
-          <input className={styles.searchInput} type='text' placeholder='Vous cherchez un film?' id="movieSearch" onChange={(e) => setMovieSearch(e.target.value)} value={movieSearch}/>
-          <FontAwesomeIcon icon={faMagnifyingGlass} size='xl' style={{color: "#021334",}} onClick={() => handleSearch(movieSearch)}/>
+          <input className={styles.searchInput} type='text' placeholder='Vous cherchez un film?' id="movieSearch" onChange={(e) => setMovieSearch(e.target.value)} value={movieSearch} onKeyDown={e => handleKey(e.code)} />
+          <FontAwesomeIcon icon={faMagnifyingGlass} size='xl' style={{ color: "#021334", }} onClick={() => handleSearch(movieSearch)} />
         </div>
         <div>
           <Popover content={content} title="Mes films ♥" trigger="click">

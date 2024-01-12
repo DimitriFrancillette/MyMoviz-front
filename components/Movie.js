@@ -50,7 +50,7 @@ function Movie(props) {
 
     return (
         <div className={styles.globalDiv}>
-            <div>
+            <div className={styles.imgDiv}>
                 <img className={styles.img} src={props.poster} alt={props.title} />
             </div>
             <div>
