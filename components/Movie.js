@@ -1,6 +1,6 @@
 import styles from '../styles/Movie.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faVideo, faStar } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faVideo, faStar } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
 function Movie(props) {

@@ -2,8 +2,8 @@ import styles from '../styles/Home.module.css';
 import Movie from './Movie';
 import 'antd/dist/reset.css';
 import { Button, Popover } from 'antd';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 
 const logoLetterStyle = { 'width': '10rem' };
@@ -13,16 +13,11 @@ const buttonStyle = {
   'background-color': '#021334',
   'margin': '1rem',
 };
-// const content = (
-//   <div>
-//     <p>Movie 1</p>
-//     <p>Movie 2</p>
-//   </div>
-// );
 
 function Home() {
   const [apiMovies, setApiMovies] = useState([]);
   const [likedMovies, setLikedMovies] = useState([]);
+  const [movieSearch, setMovieSearch] = useState('');
 
   // const moviesData = [
   //   { title: 'Forrest Gump', poster: 'forrestgump.jpg', voteAverage: 9.2, voteCount: 22_705, overview: 'A man with a low IQ has accomplished great things in his life and been present during significant historic events—in each case.', key: 1 },
@@ -67,12 +62,22 @@ function Home() {
   });
 
   const likedNumber = likedMovies.length;
+
+
+  const handleSearch = (param) => {
+    console.log(param)
+  }
+
   return (
     <div>
       <div className={styles.header}>
         <div>
           <img className={styles.images} src="/logo.png" alt="Logo" />
           <img style={logoLetterStyle} className={styles.images} src="/logoletter.png" alt="Letter logo" />
+        </div>
+        <div className={styles.searchDiv}>
+          <input className={styles.searchInput} type='text' placeholder='Vous cherchez un film?' id="movieSearch" onChange={(e) => setMovieSearch(e.target.value)} value={movieSearch}/>
+          <FontAwesomeIcon icon={faMagnifyingGlass} size='xl' style={{color: "#021334",}} onClick={() => handleSearch(movieSearch)}/>
         </div>
         <div>
           <Popover content={content} title="Mes films ♥" trigger="click">

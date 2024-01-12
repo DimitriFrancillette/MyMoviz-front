@@ -52,3 +52,20 @@
 .circleX:hover {
   cursor: pointer;
 }
+
+.searchDiv {
+  background-color: #FFAD3C;
+  border-radius: 5px;
+  width: 21rem;
+  cursor: pointer;
+}
+
+.searchInput {
+  width: 18rem;
+  height: 2.3rem;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  margin-right: 12px;
+  border: none;
+  font-size: 1.3rem;
+}
