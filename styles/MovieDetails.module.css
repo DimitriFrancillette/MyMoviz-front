@@ -1,11 +1,16 @@
 .globalDiv {
-    margin: 0.8rem;
-    max-width: 32rem;
-    max-height: 71rem;
-    margin-bottom: 5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.headerDiv {
+    width: 10rem;
+    margin-right: 40%;
+}
+
+.detailsDiv {
+    max-width: 80%;
 }
 
 .imgDiv {
@@ -15,7 +20,6 @@
 
 .img {
     border-radius: 10px;
-    cursor: pointer;
 }
 
 .title {
@@ -42,4 +46,11 @@
 
 .votes {
     padding-top: 11px;
+}
+
+.peopleDiv {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    /* max-width: 80%; */
 }

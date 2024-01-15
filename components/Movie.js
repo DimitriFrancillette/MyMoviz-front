@@ -2,6 +2,7 @@ import styles from '../styles/Movie.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faVideo, faStar } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
+import Link from 'next/link';
 
 function Movie(props) {
     const [personalNote, setPersonalNote] = useState(0);
@@ -10,7 +11,6 @@ function Movie(props) {
     const [heartColor, setHeartColor] = useState("#000000");
 
     const avgStars = [];
-
     for (let i = 0; i < 10; i++) {
         if (i < Math.floor(props.voteAverage)) {
             avgStars.push(<FontAwesomeIcon key={i} icon={faStar} style={{ color: "#f1c40f" }} />)
@@ -33,7 +33,7 @@ function Movie(props) {
         }
     }
 
-    const handleClickVideo = () => {
+    const handleClickWatched = () => {
         setWatchCount(watchCount + 1);
         setVidColor("#e74c3c")
     }
@@ -43,18 +43,22 @@ function Movie(props) {
             setHeartColor("#e74c3c")
             props.updateLikedMovies(props.title)
         } else {
-            setHeartColor("#000000")/
-            props.updateLikedMovies(props.title)
+            setHeartColor("#000000") /
+                props.updateLikedMovies(props.title)
         }
     }
 
     return (
         <div className={styles.globalDiv}>
             <div className={styles.imgDiv}>
-                <img className={styles.img} src={props.poster} alt={props.title} />
+                <Link href={`/details/${props.movieId}`}>
+                    <img className={styles.img} src={props.poster} alt={props.title} />
+                </Link>
             </div>
             <div>
-                <h2 className={styles.title}>{props.title}</h2>
+                <Link href={`/details/${props.movieId}`}>
+                    <h2 className={styles.title}>{props.title}</h2>
+                </Link>
             </div>
             <div>
                 <p className={styles.description}>{props.overview}</p>
@@ -78,7 +82,7 @@ function Movie(props) {
             </div>
             <div className={styles.ratingDiv}>
                 <div className={styles.rating}>
-                    <FontAwesomeIcon onClick={() => handleClickVideo()} icon={faVideo} style={{ color: vidColor }} />
+                    <FontAwesomeIcon onClick={() => handleClickWatched()} icon={faVideo} style={{ color: vidColor }} />
                 </div>
                 <div className={styles.votes}>
                     <p>{watchCount}</p>

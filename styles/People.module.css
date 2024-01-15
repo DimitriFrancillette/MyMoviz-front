@@ -1,0 +1,7 @@
+.globalDiv {
+    max-width: 500px;
+}
+
+.imgDiv { position: relative; width: 400px; height: 400px; overflow: hidden; border-radius: 50%; } 
+
+.imgDiv img { width: auto; height: 100%; }
