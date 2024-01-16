@@ -8,13 +8,6 @@ import People from './People';
 import 'antd/dist/reset.css';
 import { Button, Popover } from 'antd';
 
-const logoLetterStyle = { 'width': '10rem' };
-const buttonStyle = {
-  'border-radius': '5px',
-  'border-color': 'white',
-  'background-color': '#021334',
-  'margin': '1rem',
-};
 
 function MovieDetails() {
   const router = useRouter();
@@ -111,13 +104,13 @@ function MovieDetails() {
         <div>
           <Link href={`/`}>
             <img className={styles.images} src="/logo.png" alt="Logo" />
-            <img style={logoLetterStyle} className={styles.images} src="/logoletter.png" alt="Letter logo" />
+            <img className={styles.imagesLetter} src="/logoletter.png" alt="Letter logo" />
           </Link>
 
         </div>
         <div>
           <Popover content={content} title="Mes films ♥" trigger="click">
-            <Button style={buttonStyle} type="primary">♥ {likedNumber} movie(s)</Button>
+            <Button className={styles.buttonStyle} type="primary">♥ {likedNumber} movie(s)</Button>
           </Popover>
         </div>
       </div>
@@ -165,11 +158,11 @@ function MovieDetails() {
             <FontAwesomeIcon onClick={() => handleClickLiked()} icon={faHeart} style={{ color: heartColor }} />
           </div>
         </div>
-        <h3>Director</h3>
+        <h3>Réalisateur</h3>
         <div className={styles.peopleDiv}>
           {director}
         </div>
-        <h3>Main Cast</h3>
+        <h3>Casting</h3>
         <div className={styles.peopleDiv}>
           {cast}
         </div>

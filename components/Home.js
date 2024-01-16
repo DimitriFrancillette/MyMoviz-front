@@ -6,13 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 
-const logoLetterStyle = { 'width': '10rem' };
-const buttonStyle = {
-  'border-radius': '5px',
-  'border-color': 'white',
-  'background-color': '#021334',
-  'margin': '1rem',
-};
 
 function Home() {
   const [apiMovies, setApiMovies] = useState([]);
@@ -79,7 +72,7 @@ function Home() {
       <div className={styles.header}>
         <div>
           <img className={styles.images} src="/logo.png" alt="Logo" />
-          <img style={logoLetterStyle} className={styles.images} src="/logoletter.png" alt="Letter logo" />
+          <img className={styles.imagesLetter} src="/logoletter.png" alt="Letter logo" />
         </div>
         <div className={styles.searchDiv}>
           <input className={styles.searchInput} type='text' placeholder='Vous cherchez un film?' id="movieSearch" onChange={(e) => setMovieSearch(e.target.value)} value={movieSearch} onKeyDown={e => handleKey(e.code)} />
@@ -87,14 +80,14 @@ function Home() {
         </div>
         <div>
           <Popover content={content} title="Mes films ♥" trigger="click">
-            <Button style={buttonStyle} type="primary">♥ {likedNumber} movie(s)</Button>
+            <Button className={styles.buttonStyle} type="primary">♥ {likedNumber} movie(s)</Button>
           </Popover>
         </div>
       </div>
 
       <div className={styles.content}>
         <h1 className={styles.title}>
-          Last releases
+          Films à découvrir
         </h1>
         <main className={styles.main}>
           {movies}

@@ -29,8 +29,20 @@
   align-items: center;
 }
 
+.buttonStyle {
+  border-radius: 5px;
+  border-color: white;
+  background-color: #021334;
+  margin-right: 1rem;
+}
+
 .images {
   margin: 0.5rem;
+}
+
+.imagesLetter {
+  margin: 0.5rem;
+  width: 10rem;
 }
 
 .content {
