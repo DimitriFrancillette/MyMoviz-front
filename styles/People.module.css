@@ -1,7 +1,17 @@
 .globalDiv {
     max-width: 500px;
+    margin-bottom: 2rem;
 }
 
-.imgDiv { position: relative; width: 400px; height: 400px; overflow: hidden; border-radius: 50%; } 
+.imgDiv { 
+    position: relative; width: 400px; height: 400px; overflow: hidden; border-radius: 50%; 
+} 
 
-.imgDiv img { width: auto; height: 100%; }
+.imgDiv img { 
+    width: auto; height: 100%; 
+}
+
+.textDiv {
+    margin-top: 1rem;
+}
+

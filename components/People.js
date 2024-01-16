@@ -17,7 +17,7 @@ function People(props) {
             <div className={styles.imgDiv}>
                 {props.profile? <img className={styles.img} src={picture} alt={`portrait de ${props.name}`} /> : <FontAwesomeIcon icon={faImagePortrait} size='2xl' style={{color: "#B19FC", height: "100%", width: "80%"}}/> }
             </div>
-            <div>
+            <div className={styles.textDiv}>
                 <h2 className={styles.name}>{props.name}</h2>
                 <p>Role : {props.character? props.character: props.job}</p>
             </div>

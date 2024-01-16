@@ -5,13 +5,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faVideo, faStar, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import People from './People';
+import 'antd/dist/reset.css';
+import { Button, Popover } from 'antd';
 
-
+const logoLetterStyle = { 'width': '10rem' };
+const buttonStyle = {
+  'border-radius': '5px',
+  'border-color': 'white',
+  'background-color': '#021334',
+  'margin': '1rem',
+};
 
 function MovieDetails() {
   const router = useRouter();
   const movieId = router.query.movieId
   const [movieDetails, setMovieDetails] = useState([]);
+  const [likedMovies, setLikedMovies] = useState([]);
   const [personalNote, setPersonalNote] = useState(0);
   const [watchCount, setWatchCount] = useState(0);
   const [vidColor, setVidColor] = useState("#000000");
@@ -26,24 +35,21 @@ function MovieDetails() {
       .catch(err => console.error('error:' + err));
   }, []);
 
-  let producer;
+  let director;
   if (movieDetails.length !== 0) {
 
-    producer = movieDetails.crew.map(data => {
-      console.log(data)
+    director = movieDetails.crew.map(data => {
       return <People key={data.id} id={data.id} name={data.name} job={data.job} profile={data.profile_path} />
     });
   }
 
   let cast;
-    if (movieDetails.length !== 0) {
+  if (movieDetails.length !== 0) {
 
-      cast = movieDetails.cast.map(data => {
-        console.log(data)
-        return <People key={data.id} id={data.id} name={data.name} character={data.character} profile={data.profile_path} />
-      });
-    }
-    console.log(cast)
+    cast = movieDetails.cast.map(data => {
+      return <People key={data.id} id={data.id} name={data.name} character={data.character} profile={data.profile_path} />
+    });
+  }
 
 
   const avgStars = [];
@@ -89,16 +95,36 @@ function MovieDetails() {
     moviePoster = `https://image.tmdb.org/t/p/w500/${movieDetails.poster}`;
   }
 
+  const content = likedMovies.map(title => {
+    return <div className={styles.likedContainer}>
+      <p>{title}</p>
+      <FontAwesomeIcon onClick={() => updateLikedMovies(title)} icon={faCircleXmark} className={styles.circleX} />
+    </div>
+  });
+
+  const likedNumber = likedMovies.length;
+
 
   return (
     <div className={styles.globalDiv}>
-      <div className={styles.headerDiv}>
-        <Link href={`/`}>
-          <FontAwesomeIcon icon={faArrowLeft} size='2xl' style={{color: "#FFAD3C", height: "40%", width: "40%"}} />
-        </Link>
+      <div className={styles.header}>
+        <div>
+          <Link href={`/`}>
+            <img className={styles.images} src="/logo.png" alt="Logo" />
+            <img style={logoLetterStyle} className={styles.images} src="/logoletter.png" alt="Letter logo" />
+          </Link>
+
+        </div>
+        <div>
+          <Popover content={content} title="Mes films ♥" trigger="click">
+            <Button style={buttonStyle} type="primary">♥ {likedNumber} movie(s)</Button>
+          </Popover>
+        </div>
       </div>
       <div className={styles.detailsDiv}>
-
+        <Link className={styles.backlink} href={`/`}>
+          <FontAwesomeIcon icon={faArrowLeft} style={{ color: "#FFAD3C", height: "5%", width: "5%" }} />
+        </Link>
         <div className={styles.imgDiv}>
           <img className={styles.img} src={moviePoster} alt={movieDetails.title} />
         </div>
@@ -139,9 +165,11 @@ function MovieDetails() {
             <FontAwesomeIcon onClick={() => handleClickLiked()} icon={faHeart} style={{ color: heartColor }} />
           </div>
         </div>
+        <h3>Director</h3>
         <div className={styles.peopleDiv}>
-          {producer}
+          {director}
         </div>
+        <h3>Main Cast</h3>
         <div className={styles.peopleDiv}>
           {cast}
         </div>

@@ -4,13 +4,17 @@ flex-direction: column;
 align-items: center;
 }
 
-.headerDiv {
-    width: 10rem;
-    margin-right: 40%;
+.header {
+    background-color: #021334;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 100vw;
+    padding-left: 20px;
 }
 
 .detailsDiv {
-    max-width: 80%;
+    max-width: 90%;
 }
 
 .imgDiv {
@@ -24,7 +28,7 @@ align-items: center;
 
 .title {
     margin: 1rem 0 1rem 0;
-    font-size: 25px;
+    font-size: 50px;
     cursor: pointer;
 }
 
@@ -48,9 +52,19 @@ align-items: center;
     padding-top: 11px;
 }
 
+.detailsDiv h3 {
+    font-size: 40px;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+}
 .peopleDiv {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    /* max-width: 80%; */
+}
+
+.backlink {
+    position: relative;
+    top: 5rem;
+    left: 15rem;
 }
