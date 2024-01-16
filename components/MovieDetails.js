@@ -11,15 +11,19 @@ import { Button, Popover } from 'antd';
 
 function MovieDetails() {
   const router = useRouter();
-  const movieId = router.query.movieId
+  let movieId = router.query.movieId
   const [movieDetails, setMovieDetails] = useState([]);
   const [likedMovies, setLikedMovies] = useState([]);
   const [personalNote, setPersonalNote] = useState(0);
+  const [idMovie, setIdMovie] = useState(0);
   const [watchCount, setWatchCount] = useState(0);
   const [vidColor, setVidColor] = useState("#000000");
   const [heartColor, setHeartColor] = useState("#000000");
 
   useEffect(() => {
+    if (movieId === undefined) {
+      movieId = 49046;
+    }
     fetch(`http://localhost:3000/movie/${movieId}`)
       .then(response => response.json())
       .then(data => {
