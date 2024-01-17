@@ -2,29 +2,25 @@ import { useRouter } from 'next/router';
 import styles from '../styles/MovieDetails.module.css';
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faVideo, faStar, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faVideo, faStar, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import People from './People';
 import 'antd/dist/reset.css';
-import { Button, Popover } from 'antd';
 
 
 function MovieDetails() {
   const router = useRouter();
   let movieId = router.query.movieId
   const [movieDetails, setMovieDetails] = useState([]);
-  const [likedMovies, setLikedMovies] = useState([]);
   const [personalNote, setPersonalNote] = useState(0);
-  const [idMovie, setIdMovie] = useState(0);
   const [watchCount, setWatchCount] = useState(0);
   const [vidColor, setVidColor] = useState("#000000");
-  const [heartColor, setHeartColor] = useState("#000000");
 
   useEffect(() => {
     if (movieId === undefined) {
       movieId = 49046;
     }
-    fetch(`http://localhost:3000/movie/${movieId}`)
+    fetch(`https://dim-movies-back.vercel.app/movie/${movieId}`)
       .then(response => response.json())
       .then(data => {
         setMovieDetails(data);
@@ -34,7 +30,6 @@ function MovieDetails() {
 
   let director;
   if (movieDetails.length !== 0) {
-
     director = movieDetails.crew.map(data => {
       return <People key={data.id} id={data.id} name={data.name} job={data.job} profile={data.profile_path} />
     });
@@ -42,7 +37,6 @@ function MovieDetails() {
 
   let cast;
   if (movieDetails.length !== 0) {
-
     cast = movieDetails.cast.map(data => {
       return <People key={data.id} id={data.id} name={data.name} character={data.character} profile={data.profile_path} />
     });
@@ -77,29 +71,11 @@ function MovieDetails() {
     setVidColor("#e74c3c")
   }
 
-  const handleClickLiked = () => {
-    if (heartColor === "#000000") {
-      setHeartColor("#e74c3c")
-      props.updateLikedMovies(movieDetails.title)
-    } else {
-      setHeartColor("#000000") /
-        props.updateLikedMovies(movieDetails.title)
-    }
-  }
 
   let moviePoster;
   if (movieDetails.poster) {
     moviePoster = `https://image.tmdb.org/t/p/w500/${movieDetails.poster}`;
   }
-
-  const content = likedMovies.map(title => {
-    return <div className={styles.likedContainer}>
-      <p>{title}</p>
-      <FontAwesomeIcon onClick={() => updateLikedMovies(title)} icon={faCircleXmark} className={styles.circleX} />
-    </div>
-  });
-
-  const likedNumber = likedMovies.length;
 
 
   return (
@@ -111,11 +87,6 @@ function MovieDetails() {
             <img className={styles.imagesLetter} src="/logoletter.png" alt="Letter logo" />
           </Link>
 
-        </div>
-        <div>
-          <Popover content={content} title="Mes films ♥" trigger="click">
-            <Button className={styles.buttonStyle} type="primary">♥ {likedNumber} movie(s)</Button>
-          </Popover>
         </div>
       </div>
       <div className={styles.detailsDiv}>
@@ -155,11 +126,6 @@ function MovieDetails() {
           </div>
           <div className={styles.votes}>
             <p>{watchCount}</p>
-          </div>
-        </div>
-        <div className={styles.ratingDiv}>
-          <div className={styles.rating}>
-            <FontAwesomeIcon onClick={() => handleClickLiked()} icon={faHeart} style={{ color: heartColor }} />
           </div>
         </div>
         <h3>Réalisateur</h3>

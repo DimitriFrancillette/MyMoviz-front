@@ -13,7 +13,7 @@ function Home() {
   const [movieSearch, setMovieSearch] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3000/movies')
+    fetch('https://dim-movies-back.vercel.app/movies')
       .then(response => response.json())
       .then(data => {
         setApiMovies(data.movies);
@@ -57,7 +57,7 @@ function Home() {
   const handleSearch = (param) => {
     console.log(param)
 
-    fetch(`http://localhost:3000/search/${movieSearch}`)
+    fetch(`https://dim-movies-back.vercel.app/search/${movieSearch}`)
       .then(response => response.json())
       .then(data => {
         setApiMovies(data.results);
