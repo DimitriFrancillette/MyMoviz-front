@@ -9,7 +9,6 @@ import Header from './Header';
 function Home() {
   const [apiMovies, setApiMovies] = useState([]);
   const [likedMovies, setLikedMovies] = useState([]);
-  // const [movieSearch, setMovieSearch] = useState('');
 
   useEffect(() => {
     fetch('https://dim-movies-back.vercel.app/movies')
@@ -50,13 +49,14 @@ function Home() {
         voteAverage={data.vote_average}
         voteCount={data.vote_count}
         updateLikedMovies={updateLikedMovies}
+        likedMovies={likedMovies}
       />
     );
   });
 
   const content = likedMovies.map((title) => {
     return (
-      <div className={styles.likedContainer}>
+      <div key={title} className={styles.likedContainer}>
         <p>{title}</p>
         <FontAwesomeIcon
           onClick={() => updateLikedMovies(title)}
@@ -77,9 +77,6 @@ function Home() {
       })
       .catch((err) => console.error('error:' + err));
   };
-
-  const handleKey = (param) =>
-    param === 'Enter' ? handleSearch(movieSearch) : null;
 
   return (
     <div>

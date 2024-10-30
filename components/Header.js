@@ -8,8 +8,8 @@ import { useState } from 'react';
 export default function Header({ content, likedNumber, handleSearch }) {
   const [movieSearch, setMovieSearch] = useState('');
 
-  const handleKey = (param) =>
-    param === 'Enter' ? handleSearch(movieSearch) : null;
+  const handleKey = (param) => param === 'Enter' && handleSearch(movieSearch);
+
   return (
     <div className={styles.header}>
       <div>
