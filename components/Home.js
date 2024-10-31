@@ -85,10 +85,8 @@ function Home() {
         likedNumber={likedNumber}
         handleSearch={handleSearch}
       />
-      <div className={styles.content}>
-        <h1 className={styles.title}>Films à découvrir</h1>
-        <main className={styles.main}>{movies}</main>
-      </div>
+      <h1 className={styles.title}>Films à découvrir</h1>
+      <main className={styles.main}>{movies}</main>
     </div>
   );
 }

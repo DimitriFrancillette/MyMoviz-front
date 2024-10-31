@@ -1,31 +1,14 @@
 .main {
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   padding: 4rem 0;
 }
 
 .title {
   line-height: 1.15;
-  font-size: 2rem;
-  margin: 2rem 0rem -2rem 10rem;
-}
-
-.title a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-}
-
-.content {
-  min-width: 100vw;
+  font-size: 3rem;
+  margin: 2rem 0rem 0rem 4rem;
 }
 
 .main {
