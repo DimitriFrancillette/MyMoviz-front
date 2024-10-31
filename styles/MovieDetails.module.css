@@ -1,27 +1,23 @@
-.buttonStyle {
-  border-radius: 5px;
-  border-color: white;
-  background-color: #021334;
-  margin-right: 1rem;
-}
-
-.images {
-  margin: 0.5rem;
-}
-
-.imagesLetter {
-  margin: 0.5rem;
-  width: 10rem;
-}
-
 .detailsDiv {
   max-width: 90%;
   margin-left: 4rem;
 }
 
+.topSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 2rem 1fr;
+}
+
+.backlink {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  margin-top: 2rem;
+}
+
 .imgDiv {
-  display: flex;
-  justify-content: center;
+  grid-column-start: 4;
+  grid-row-start: 2;
 }
 
 .img {
@@ -29,9 +25,8 @@
 }
 
 .title {
-  margin: 1rem 0 1rem 0;
+  margin: 2rem 0 2rem 0;
   font-size: 50px;
-  cursor: pointer;
 }
 
 .description {
@@ -51,10 +46,6 @@
   cursor: pointer;
 }
 
-.votes {
-  padding-top: 11px;
-}
-
 .detailsDiv h3 {
   font-size: 40px;
   margin-top: 5rem;
@@ -65,10 +56,4 @@
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-}
-
-.backlink {
-  position: relative;
-  top: 5rem;
-  left: 15rem;
 }

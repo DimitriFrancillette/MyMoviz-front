@@ -2,11 +2,7 @@ import { useRouter } from 'next/router';
 import styles from '../styles/MovieDetails.module.css';
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faVideo,
-  faStar,
-  faArrowLeft,
-} from '@fortawesome/free-solid-svg-icons';
+import { faStar, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import People from './People';
 import 'antd/dist/reset.css';
@@ -16,9 +12,6 @@ function MovieDetails() {
   const router = useRouter();
   let movieId = router.query.movieId;
   const [movieDetails, setMovieDetails] = useState([]);
-  const [personalNote, setPersonalNote] = useState(0);
-  const [watchCount, setWatchCount] = useState(0);
-  const [vidColor, setVidColor] = useState('#000000');
 
   useEffect(() => {
     if (movieId === undefined) {
@@ -73,99 +66,54 @@ function MovieDetails() {
     }
   }
 
-  const myStars = [];
-
-  const handleClickStar = (key) => {
-    setPersonalNote(key + 1);
-  };
-
-  for (let i = 0; i < 10; i++) {
-    if (i < personalNote) {
-      myStars.push(
-        <FontAwesomeIcon
-          onClick={() => handleClickStar(i)}
-          key={i}
-          icon={faStar}
-          style={{ color: '#2196f3' }}
-        />
-      );
-    } else {
-      myStars.push(
-        <FontAwesomeIcon
-          onClick={() => handleClickStar(i)}
-          key={i}
-          icon={faStar}
-          style={{ color: '#000000' }}
-        />
-      );
-    }
-  }
-
-  const handleClickWatched = () => {
-    setWatchCount(watchCount + 1);
-    setVidColor('#e74c3c');
-  };
-
   let moviePoster;
   if (movieDetails.poster) {
     moviePoster = `https://image.tmdb.org/t/p/w500/${movieDetails.poster}`;
   }
 
   return (
-    <div className={styles.globalDiv}>
+    <>
       <Header />
       <div className={styles.detailsDiv}>
-        <Link className={styles.backlink} href={`/`}>
-          <FontAwesomeIcon
-            icon={faArrowLeft}
-            style={{ color: '#FFAD3C', height: '2%', width: '2%' }}
-          />
-        </Link>
-        <div className={styles.imgDiv}>
-          <img
-            className={styles.img}
-            src={moviePoster}
-            alt={movieDetails.title}
-          />
-        </div>
-        <div>
-          <h2 className={styles.title}>{movieDetails.title}</h2>
-          <p>Date de sortie : {movieDetails.release}</p>
-          <p>Durée : {movieDetails.runtime} minutes</p>
-        </div>
-        <div>
-          <p className={styles.description}>{movieDetails.overview}</p>
-        </div>
-        <div className={styles.ratingDiv}>
-          <div className={styles.rating}>{avgStars}</div>
-          <div className={styles.votes}>
-            <p>({movieDetails.vote_count})</p>
-          </div>
-        </div>
-        <div className={styles.ratingDiv}>
-          <div className={styles.rating}>{myStars}</div>
-          <div className={styles.votes}>
-            <p>{personalNote}</p>
-          </div>
-        </div>
-        <div className={styles.ratingDiv}>
-          <div className={styles.rating}>
+        <section className={styles.topSection}>
+          <Link className={styles.backlink} href={`/`}>
             <FontAwesomeIcon
-              onClick={() => handleClickWatched()}
-              icon={faVideo}
-              style={{ color: vidColor }}
+              icon={faArrowLeft}
+              style={{ color: '#FFAD3C', height: '38px', width: '38px' }}
+            />
+          </Link>
+          <div className={styles.imgDiv}>
+            <img
+              className={styles.img}
+              src={moviePoster}
+              alt={movieDetails.title}
             />
           </div>
-          <div className={styles.votes}>
-            <p>{watchCount}</p>
+        </section>
+        <section>
+          <div>
+            <h2 className={styles.title}>{movieDetails.title}</h2>
+            <p>Date de sortie : {movieDetails.release}</p>
+            <p>Durée : {movieDetails.runtime} minutes</p>
           </div>
-        </div>
-        <h3>Réalisateur</h3>
-        <div className={styles.peopleDiv}>{director}</div>
-        <h3>Casting</h3>
-        <div className={styles.peopleDiv}>{cast}</div>
+          <div>
+            <p className={styles.description}>{movieDetails.overview}</p>
+          </div>
+          <div className={styles.ratingDiv}>
+            <div className={styles.rating}>{avgStars}</div>
+            <div className={styles.votes}>
+              <p>({movieDetails.vote_count})</p>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>Réalisateur</h3>
+          <div className={styles.peopleDiv}>{director}</div>
+          <h3>Casting</h3>
+          <div className={styles.peopleDiv}>{cast}</div>
+        </section>
       </div>
-    </div>
+    </>
   );
 }
 
