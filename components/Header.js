@@ -5,7 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
-export default function Header({ content, likedNumber, handleSearch }) {
+export default function Header({
+  content,
+  likedNumber,
+  handleSearch,
+  isSearchPossible,
+}) {
   const [movieSearch, setMovieSearch] = useState('');
 
   const handleKey = (param) => param === 'Enter' && handleSearch(movieSearch);
@@ -20,30 +25,34 @@ export default function Header({ content, likedNumber, handleSearch }) {
           alt='Letter logo'
         />
       </div>
-      <div className={styles.searchDiv}>
-        <input
-          className={styles.searchInput}
-          type='text'
-          placeholder='Vous cherchez un film?'
-          id='movieSearch'
-          onChange={(e) => setMovieSearch(e.target.value)}
-          value={movieSearch}
-          onKeyDown={(e) => handleKey(e.code)}
-        />
-        <FontAwesomeIcon
-          icon={faMagnifyingGlass}
-          size='xl'
-          style={{ color: '#021334' }}
-          onClick={() => handleSearch(movieSearch)}
-        />
-      </div>
-      <div>
-        <Popover content={content} title='Mes films ♥' trigger='click'>
-          <Button className={styles.buttonStyle} type='primary'>
-            ♥ {likedNumber} movie(s)
-          </Button>
-        </Popover>
-      </div>
+      {isSearchPossible && (
+        <div className={styles.searchDiv}>
+          <input
+            className={styles.searchInput}
+            type='text'
+            placeholder='Vous cherchez un film?'
+            id='movieSearch'
+            onChange={(e) => setMovieSearch(e.target.value)}
+            value={movieSearch}
+            onKeyDown={(e) => handleKey(e.code)}
+          />
+          <FontAwesomeIcon
+            icon={faMagnifyingGlass}
+            size='xl'
+            style={{ color: '#021334' }}
+            onClick={() => handleSearch(movieSearch)}
+          />
+        </div>
+      )}
+      {isSearchPossible && (
+        <div>
+          <Popover content={content} title='Mes films ♥' trigger='click'>
+            <Button className={styles.buttonStyle} type='primary'>
+              ♥ {likedNumber} movie(s)
+            </Button>
+          </Popover>
+        </div>
+      )}
     </div>
   );
 }

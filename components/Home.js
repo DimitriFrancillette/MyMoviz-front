@@ -84,6 +84,7 @@ function Home() {
         content={content}
         likedNumber={likedNumber}
         handleSearch={handleSearch}
+        isSearchPossible={true}
       />
       <h1 className={styles.title}>Films à découvrir</h1>
       <main className={styles.main}>{movies}</main>
