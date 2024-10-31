@@ -1,21 +1,34 @@
 .globalDiv {
-    max-width: 500px;
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
 }
 
-.imgDiv { 
-    position: relative; 
-    width: 400px; 
-    height: 400px; 
-    overflow: hidden; 
-    border-radius: 50%; 
-} 
+.imgDiv {
+  width: 175px;
+  height: 175px;
+  overflow: hidden;
+  border-radius: 50%;
+}
 
-.imgDiv img { 
-    width: auto; height: 100%; 
+.imgDiv img {
+  width: auto;
+  height: 100%;
 }
 
 .textDiv {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
+@media (min-width: 640px) {
+  .imgDiv {
+    width: 225px;
+    height: 225px;
+  }
+}
+
+@media (min-width: 720px) {
+  .imgDiv {
+    width: 300px;
+    height: 300px;
+  }
+}

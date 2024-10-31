@@ -72,25 +72,27 @@ function MovieDetails() {
   }
 
   return (
-    <>
+    <div className={styles.main}>
       <Header />
       <div className={styles.detailsDiv}>
         <section className={styles.topSection}>
-          <Link className={styles.backlink} href={`/`}>
-            <FontAwesomeIcon
-              icon={faArrowLeft}
-              style={{ color: '#FFAD3C', height: '38px', width: '38px' }}
-            />
-          </Link>
-          <div className={styles.imgDiv}>
-            <img
-              className={styles.img}
-              src={moviePoster}
-              alt={movieDetails.title}
-            />
+          <div className={styles.topSubSection}>
+            <Link className={styles.backlink} href={`/`}>
+              <FontAwesomeIcon
+                icon={faArrowLeft}
+                style={{ color: '#FFAD3C', height: '38px', width: '38px' }}
+              />
+            </Link>
+            <div className={styles.imgDiv}>
+              <img
+                className={styles.img}
+                src={moviePoster}
+                alt={movieDetails.title}
+              />
+            </div>
           </div>
         </section>
-        <section>
+        <section className={styles.middleSection}>
           <div>
             <h2 className={styles.title}>{movieDetails.title}</h2>
             <p>Date de sortie : {movieDetails.release}</p>
@@ -106,14 +108,14 @@ function MovieDetails() {
             </div>
           </div>
         </section>
-        <section>
-          <h3>Réalisateur</h3>
+        <section className={styles.bottomSection}>
+          <h3>Réalisateur/trice</h3>
           <div className={styles.peopleDiv}>{director}</div>
           <h3>Casting</h3>
           <div className={styles.peopleDiv}>{cast}</div>
         </section>
       </div>
-    </>
+    </div>
   );
 }
 
